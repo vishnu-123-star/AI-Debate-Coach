@@ -1,8 +1,5 @@
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from app.routes.debate import router as debate_router
 
 app = FastAPI(
     title="AI Debate Coach API",
@@ -12,13 +9,14 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ai-debate-coach.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app.include_router(debate_router)
 
 
 @app.get("/")
