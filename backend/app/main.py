@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.routes.debate import router as debate_router
+
 app = FastAPI(
     title="AI Debate Coach API",
     description="AI-powered balanced debate generation system",
@@ -17,6 +19,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Register Debate API
+app.include_router(debate_router)
 
 
 @app.get("/")
